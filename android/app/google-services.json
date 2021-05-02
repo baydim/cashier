@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "592993325014",
+    "project_id": "insab-5afe1",
+    "storage_bucket": "insab-5afe1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:592993325014:android:8be4ca9eb12d9ee2199e77",
+        "android_client_info": {
+          "package_name": "com.tutu.cashier"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "592993325014-ca6pe8khmniionou17hqlu76humpgmcu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tutu.cashier",
+            "certificate_hash": "c69f91d805dc298b9de7bb86e7b11a93c9037824"
+          }
+        },
+        {
+          "client_id": "592993325014-vqc27465rjan8kle1ohibrptf38e95g8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzPwRDWo0xqjawESLQsBtyEXXkeyxamdY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "592993325014-vqc27465rjan8kle1ohibrptf38e95g8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
