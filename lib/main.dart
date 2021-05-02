@@ -1,5 +1,6 @@
 import 'package:cashier/barang/barang.dart';
 import 'package:cashier/controller/barangcontroller.dart';
+import 'package:cashier/controller/transaksicontroller.dart';
 import 'package:cashier/laporan/laporan.dart';
 import 'package:cashier/transaksi/transaksi.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -53,9 +54,11 @@ class _WrapState extends State<Wrap> {
   int hlm = 0;
   PageController p = PageController(initialPage: 0, keepPage: true);
   Getbarang b = Get.put(Getbarang());
+  TransaksiController t = Get.put(TransaksiController());
   @override
   void initState() {
     b.getbarang();
+    t.gettransaksi();
     super.initState();
   }
 

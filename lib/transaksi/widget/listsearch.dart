@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:cashier/controller/barangcontroller.dart';
 import 'package:cashier/manage/formater.dart';
 import 'package:flutter/material.dart';
@@ -30,43 +32,46 @@ class _ListSearchState extends State<ListSearch> {
   TextEditingController jumbel = TextEditingController();
 
   Widget by() {
-    return Container(
-      height: 40,
-      padding: EdgeInsets.only(left: 15, right: 0, bottom: 1),
-      margin: EdgeInsets.all(15),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: Colors.grey.shade200,
-      ),
-      child: TextField(
-        keyboardType: TextInputType.number,
-        autofocus: true,
-        onChanged: (value) {
-          setState(() {});
-        },
-        cursorColor: Colors.black,
-        style: TextStyle(
-          fontSize: 13,
+    return BackdropFilter(
+      filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+      child: Container(
+        height: 40,
+        padding: EdgeInsets.only(left: 15, right: 0, bottom: 1),
+        margin: EdgeInsets.all(15),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: Colors.grey.shade200,
         ),
-        controller: jumbel,
-        decoration: InputDecoration(
-          suffixIcon: InkWell(
-              onTap: () {
-                if (Get.isBottomSheetOpen) Get.back();
+        child: TextField(
+          keyboardType: TextInputType.number,
+          autofocus: true,
+          onChanged: (value) {
+            setState(() {});
+          },
+          cursorColor: Colors.black,
+          style: TextStyle(
+            fontSize: 13,
+          ),
+          controller: jumbel,
+          decoration: InputDecoration(
+            suffixIcon: InkWell(
+                onTap: () {
+                  if (Get.isBottomSheetOpen) Get.back();
 
-                b.addbeli(
-                  id: widget.id,
-                  kode: widget.kode,
-                  nama: widget.nama,
-                  harga: widget.harga,
-                  jumlah: widget.stock,
-                  jumlahbeli: int.tryParse(jumbel.text),
-                  tot: widget.harga * int.tryParse(jumbel.text),
-                );
-              },
-              child: Icon(Icons.send, color: Colors.black)),
-          hintText: "Jumlah barang",
-          border: InputBorder.none,
+                  b.addbeli(
+                    id: widget.id,
+                    kode: widget.kode,
+                    nama: widget.nama,
+                    harga: widget.harga,
+                    jumlah: widget.stock,
+                    jumlahbeli: int.tryParse(jumbel.text),
+                    tot: widget.harga * int.tryParse(jumbel.text),
+                  );
+                },
+                child: Icon(Icons.send, color: Colors.black)),
+            hintText: "Jumlah barang",
+            border: InputBorder.none,
+          ),
         ),
       ),
     );

@@ -1,5 +1,7 @@
 import 'package:cashier/controller/barangcontroller.dart';
+import 'package:cashier/controller/transaksicontroller.dart';
 import 'package:cashier/manage/formater.dart';
+import 'package:cashier/transaksi/history.dart';
 import 'package:cashier/transaksi/widget/listsearch.dart';
 import 'package:cashier/transaksi/widget/search.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +13,8 @@ class Transaksi extends StatefulWidget {
 }
 
 class _TransaksiState extends State<Transaksi> {
+  TransaksiController t = Get.put(TransaksiController());
+  Getbarang b = Get.put(Getbarang());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,6 +30,17 @@ class _TransaksiState extends State<Transaksi> {
             color: Colors.black,
           ),
         ),
+        actions: [
+          InkWell(
+            onTap: () {
+              Get.to(History());
+            },
+            child: Icon(Icons.history, color: Colors.black),
+          ),
+          SizedBox(
+            width: 15,
+          ),
+        ],
       ),
       body: GetBuilder<Getbarang>(
         init: Getbarang(),
@@ -61,29 +76,46 @@ class _TransaksiState extends State<Transaksi> {
               val.beli.forEach((item) {
                 b += item['totharga'];
               });
-              return Container(
-                margin: EdgeInsets.only(left: 30),
-                decoration: BoxDecoration(
-                    color: Colors.black,
-                    borderRadius: BorderRadius.circular(100),
-                    boxShadow: [
-                      BoxShadow(
-                          color: Colors.black38,
-                          blurRadius: 5,
-                          offset: Offset(0, 5))
-                    ]),
-                height: 40,
-                padding: EdgeInsets.only(left: 15, right: 15),
-                child: Center(
-                  child: Text(
-                    uang.format(b),
-                    style: TextStyle(
-                      color: Colors.white,
-                      // fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              );
+              return val.beli.isNotEmpty || val.beli.length > 0
+                  ? InkWell(
+                      onTap: () {
+                        if (val.beli == null ||
+                            val.beli.length <= 0 ||
+                            b == null ||
+                            b == 0) {
+                          print("Kosong");
+                        } else {
+                          t.addtransaksi(data: val.beli, bayar: b);
+                          val.hapusbeliall();
+                        }
+                      },
+                      child: Container(
+                        margin: EdgeInsets.only(left: 30),
+                        decoration: BoxDecoration(
+                            color: Colors.black,
+                            borderRadius: BorderRadius.circular(100),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.black38,
+                                  blurRadius: 5,
+                                  offset: Offset(0, 5))
+                            ]),
+                        height: 40,
+                        padding: EdgeInsets.only(left: 15, right: 15),
+                        child: Center(
+                          child: Text(
+                            uang.format(b),
+                            style: TextStyle(
+                              color: Colors.white,
+                              // fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+                    )
+                  : SizedBox(
+                      width: 40,
+                    );
             },
           ),
           FloatingActionButton(

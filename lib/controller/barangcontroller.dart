@@ -12,21 +12,33 @@ class Getbarang extends GetxController {
   List beli = [];
   List sortgl = [];
 
+  hapusbeliall() {
+    beli.clear();
+    update();
+  }
+
   hapusbeli({int i}) {
     beli.removeAt(i);
     print(beli);
     update();
   }
 
-  addbeli({String kode, String nama, int harga, int jumlah, String id,int jumlahbeli,int tot }) {
+  addbeli(
+      {String kode,
+      String nama,
+      int harga,
+      int jumlah,
+      String id,
+      int jumlahbeli,
+      int tot}) {
     beli.add({
       'idb': id,
       'kode': kode,
       'nama': nama,
       'harga': harga,
       'jumlah': jumlah,
-      'jumlahbeli' : jumlahbeli,
-      'totharga' : tot,
+      'jumlahbeli': jumlahbeli,
+      'totharga': tot,
     });
     temu.clear();
     Get.back();
