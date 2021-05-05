@@ -33,7 +33,9 @@ class _TransaksiState extends State<Transaksi> {
         actions: [
           InkWell(
             onTap: () {
-              Get.to(History());
+              Get.to(
+                History(),
+              );
             },
             child: Icon(Icons.history, color: Colors.black),
           ),
