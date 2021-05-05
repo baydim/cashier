@@ -6,6 +6,7 @@ import 'package:cashier/transaksi/widget/listsearch.dart';
 import 'package:cashier/transaksi/widget/search.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 
 class Transaksi extends StatefulWidget {
   @override
@@ -50,21 +51,29 @@ class _TransaksiState extends State<Transaksi> {
           final a = val.beli;
           return SingleChildScrollView(
             physics: BouncingScrollPhysics(),
-            child: Column(
-              children: [
-                for (var i = 0; i < val.beli.length; i++)
-                  ListSearch(
-                    kode: a[i]['kode'],
-                    id: a[i]['id'],
-                    nama: a[i]['nama'],
-                    harga: a[i]['harga'],
-                    stock: a[i]['jumlah'],
-                    x: true,
-                    i: i,
-                    jumbel: a[i]['jumlahbeli'],
+            child: val.beli.length < 0 || val.beli.isEmpty || val.beli == null
+                ? SizedBox(
+                    height: Get.height / 1.5,
+                    child: Center(
+                      child:
+                          Lottie.asset('assets/can.json', width: Get.width / 2),
+                    ),
+                  )
+                : Column(
+                    children: [
+                      for (var i = 0; i < val.beli.length; i++)
+                        ListSearch(
+                          kode: a[i]['kode'],
+                          id: a[i]['id'],
+                          nama: a[i]['nama'],
+                          harga: a[i]['harga'],
+                          stock: a[i]['jumlah'],
+                          x: true,
+                          i: i,
+                          jumbel: a[i]['jumlahbeli'],
+                        ),
+                    ],
                   ),
-              ],
-            ),
           );
         },
       ),
