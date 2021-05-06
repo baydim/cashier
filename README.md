@@ -2,6 +2,9 @@
 
 cashier aplication using flutter firebase
 
+# Design UI
+![alt text](https://github.com/baydim/cashier/blob/master/assets/Group%2014%20(5).png)
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
